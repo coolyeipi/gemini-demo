@@ -1,7 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #e9ebee;
-    color: #333;
+    background-color: #2c3e50; /* Dark blue-gray background */
+    color: #ecf0f1; /* Light text for contrast */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,75 +12,87 @@ body {
 }
 
 .container {
-    background-color: #ffffff;
+    background-color: #34495e; /* Slightly lighter dark blue-gray for container */
     padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     width: 100%;
-    max-width: 700px;
+    max-width: 750px;
     text-align: center;
     box-sizing: border-box;
+    border: 1px solid #4a627a; /* Subtle border */
 }
 
 h1 {
-    font-size: 28px;
-    color: #1c1e21;
+    font-size: 32px;
+    color: #f1c40f; /* Dark yellow for main heading */
     margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 p {
-    font-size: 17px;
-    color: #606770;
+    font-size: 18px;
+    color: #bdc3c7; /* Lighter gray for paragraph text */
     margin-bottom: 30px;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 textarea {
     width: calc(100% - 24px);
-    height: 150px;
-    padding: 12px;
-    border: 1px solid #ccd0d5;
-    border-radius: 8px;
-    font-size: 16px;
+    height: 160px;
+    padding: 15px;
+    border: 1px solid #4a627a;
+    border-radius: 10px;
+    font-size: 17px;
     margin-bottom: 20px;
     resize: vertical;
     box-sizing: border-box;
+    background-color: #2c3e50; /* Dark background for textarea */
+    color: #ecf0f1; /* Light text for textarea */
+}
+
+textarea::placeholder {
+    color: #95a5a6; /* Lighter placeholder text */
 }
 
 textarea:focus {
     outline: none;
-    border-color: #1877f2;
-    box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.25);
+    border-color: #f1c40f; /* Dark yellow focus border */
+    box-shadow: 0 0 0 4px rgba(241, 196, 15, 0.3);
 }
 
 button {
-    background-color: #1877f2;
-    color: #ffffff;
+    background-color: #f39c12; /* Dark yellow for buttons */
+    color: #2c3e50; /* Dark text for contrast on yellow */
     border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-size: 17px;
-    font-weight: 600;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background-color: #166fe5;
-    transform: translateY(-2px);
+    background-color: #e67e22; /* Slightly darker yellow on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 button:active {
     transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
-    font-size: 22px;
-    color: #1c1e21;
-    margin-top: 30px;
-    margin-bottom: 15px;
+    font-size: 26px;
+    color: #f1c40f; /* Dark yellow for subheadings */
+    margin-top: 35px;
+    margin-bottom: 20px;
     text-align: left;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .output-container {
@@ -89,47 +101,54 @@ h2 {
 }
 
 #output-prompt {
-    background-color: #f0f2f5;
+    background-color: #2c3e50; /* Dark background for output textarea */
     cursor: text;
-    height: 200px;
+    height: 220px;
     margin-bottom: 0;
+    border: 1px solid #f39c12; /* Dark yellow border for output */
 }
 
 #copy-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 8px 15px;
-    font-size: 14px;
-    background-color: #606770;
+    top: 15px;
+    right: 15px;
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: #f1c40f; /* Dark yellow for copy button */
+    color: #2c3e50; /* Dark text for contrast */
     z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #copy-button:hover {
-    background-color: #4a4d50;
+    background-color: #e6b800; /* Slightly darker yellow on hover */
 }
 
 .file-upload-container {
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
 .custom-file-upload {
-    border: 1px solid #ccd0d5;
+    border: 2px dashed #f1c40f; /* Dashed dark yellow border */
     display: inline-block;
-    padding: 8px 12px;
+    padding: 12px 25px;
     cursor: pointer;
-    border-radius: 8px;
-    background-color: #f0f2f5;
-    color: #606770;
-    font-size: 15px;
-    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    background-color: #34495e; /* Container background */
+    color: #f1c40f; /* Dark yellow text */
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .custom-file-upload:hover {
-    background-color: #e4e6eb;
+    background-color: #4a627a; /* Darker background on hover */
+    border-color: #e67e22; /* Orange-yellow on hover */
 }
 
 #file-upload {
@@ -137,7 +156,7 @@ h2 {
 }
 
 #file-name {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #606770;
+    margin-top: 5px;
+    font-size: 15px;
+    color: #bdc3c7; /* Light gray for file name */
 }
