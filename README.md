@@ -14,4 +14,4 @@ Este proyecto se despliega automáticamente en GitHub Pages cada vez que se real
 
 El flujo de trabajo de GitHub Actions se encuentra en `.github/workflows/deploy.yml`.
 
-<!-- Trigger re-deploy -->
+<!-- Trigger re-deploy - 2 -->
