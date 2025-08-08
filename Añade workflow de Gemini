@@ -20,4 +20,4 @@ jobs:
             Evalúa legibilidad y posibles errores.
             Responde en español neutral.
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY: ${{AIzaSyDrjCuyGGJaR2wUwi22TQrtk9BGSnoz1Cw}}
