@@ -3,11 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const optimizeButton = document.getElementById('optimize-button');
     const outputPrompt = document.getElementById('output-prompt');
     const copyButton = document.getElementById('copy-button');
+    const fileUpload = document.getElementById('file-upload');
+    const fileNameDisplay = document.getElementById('file-name');
 
     optimizeButton.addEventListener('click', () => {
         const originalPrompt = inputPrompt.value;
         if (originalPrompt.trim() === '') {
-            alert('Por favor, introduce un prompt.');
+            alert('Por favor, introduce un prompt o carga un archivo.');
             return;
         }
 
@@ -26,6 +28,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error al copiar: ', err);
                 alert('No se pudo copiar el prompt. Por favor, cópialo manualmente.');
             });
+    });
+
+    fileUpload.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            fileNameDisplay.textContent = file.name;
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+
+            if (fileExtension === 'txt') {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    inputPrompt.value = e.target.result;
+                };
+                reader.onerror = (e) => {
+                    console.error('Error al leer el archivo TXT: ', e);
+                    alert('Error al leer el archivo TXT. Inténtalo de nuevo.');
+                };
+                reader.readAsText(file);
+            } else if (['pdf', 'docx'].includes(fileExtension)) {
+                // Para PDF/DOCX, generamos un prompt genérico ya que no podemos leer su contenido directamente en el navegador
+                inputPrompt.value = `Genera un resumen detallado y los puntos clave del documento llamado "${file.name}".`;
+                alert(`Se ha generado un prompt para el archivo ${file.name}. Ten en cuenta que el contenido del archivo no se ha leído directamente.`);
+            } else {
+                alert('Tipo de archivo no soportado. Por favor, sube un archivo .txt, .pdf o .docx.');
+                inputPrompt.value = '';
+                fileNameDisplay.textContent = 'Ningún archivo seleccionado';
+            }
+        } else {
+            fileNameDisplay.textContent = 'Ningún archivo seleccionado';
+            inputPrompt.value = '';
+        }
     });
 
     function optimizarPrompt(prompt) {
