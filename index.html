@@ -12,12 +12,21 @@
         <p>Introduce tu idea o pregunta y la optimizaremos para obtener la mejor respuesta de una IA.</p>
         
         <textarea id="input-prompt" placeholder="Ej: resume el libro 'Cien años de soledad'"></textarea>
-        <div class="file-upload-container">
-            <label for="file-upload" class="custom-file-upload">
-                O Cargar Archivo
-            </label>
-            <input type="file" id="file-upload" accept=".txt,.pdf,.docx">
-            <span id="file-name">Ningún archivo seleccionado</span>
+
+        <div class="prompt-options">
+            <label for="prompt-type">Tipo de Prompt Deseado:</label>
+            <select id="prompt-type">
+                <option value="general">General (Optimización Básica)</option>
+                <option value="summary">Resumen / Síntesis</option>
+                <option value="code">Generar Código</option>
+                <option value="roleplay">Crear Rol / Personaje</option>
+                <option value="explanation">Explicación / Definición</option>
+                <option value="brainstorm">Brainstorming / Ideas</option>
+                <option value="image_description">Descripción para Generación de Imagen</option>
+            </select>
+
+            <label for="specific-instructions">Instrucciones Específicas (Opcional):</label>
+            <textarea id="specific-instructions" placeholder="Ej: en Python, para un público no técnico, con 5 ideas..."></textarea>
         </div>
         
         <button id="optimize-button">Optimizar Prompt</button>

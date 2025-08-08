@@ -53,9 +53,6 @@ web_modules/
 # Optional eslint cache
 .eslintcache
 
-# Optional stylelint cache
-.stylelintcache
-
 # Optional REPL history
 .node_repl_history
 
@@ -137,3 +134,7 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Backend specific ignores
+backend/uploads/
+backend/node_modules/

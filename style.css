@@ -124,39 +124,44 @@ h2 {
     background-color: #e6b800; /* Slightly darker yellow on hover */
 }
 
-.file-upload-container {
-    margin-top: 20px;
+.prompt-options {
+    margin-top: 30px;
     margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.custom-file-upload {
-    border: 2px dashed #f1c40f; /* Dashed dark yellow border */
-    display: inline-block;
-    padding: 12px 25px;
-    cursor: pointer;
+    text-align: left;
+    padding: 20px;
+    background-color: #2c3e50;
     border-radius: 10px;
-    background-color: #34495e; /* Container background */
-    color: #f1c40f; /* Dark yellow text */
-    font-size: 16px;
+    border: 1px solid #4a627a;
+}
+
+.prompt-options label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #f1c40f;
     font-weight: 600;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.custom-file-upload:hover {
-    background-color: #4a627a; /* Darker background on hover */
-    border-color: #e67e22; /* Orange-yellow on hover */
+.prompt-options select,
+.prompt-options textarea {
+    width: calc(100% - 24px); /* Adjust for padding */
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #4a627a;
+    background-color: #34495e;
+    color: #ecf0f1;
+    font-size: 16px;
 }
 
-#file-upload {
-    display: none;
+.prompt-options select:focus,
+.prompt-options textarea:focus {
+    outline: none;
+    border-color: #f1c40f;
+    box-shadow: 0 0 0 3px rgba(241, 196, 15, 0.25);
 }
 
-#file-name {
-    margin-top: 5px;
-    font-size: 15px;
-    color: #bdc3c7; /* Light gray for file name */
+.prompt-options textarea {
+    height: 100px;
+    resize: vertical;
 }
