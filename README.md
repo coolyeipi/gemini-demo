@@ -13,3 +13,5 @@ Esta es una aplicación web simple que te ayuda a optimizar tus prompts para obt
 Este proyecto se despliega automáticamente en GitHub Pages cada vez que se realiza un `push` a la rama `main`.
 
 El flujo de trabajo de GitHub Actions se encuentra en `.github/workflows/deploy.yml`.
+
+<!-- Trigger re-deploy -->
