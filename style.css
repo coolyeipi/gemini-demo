@@ -1,0 +1,78 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    color: #1c1e21;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #606770;
+    margin-bottom: 30px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 12px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    resize: vertical;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #1877f2;
+    box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+}
+
+button {
+    background-color: #1877f2;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #166fe5;
+}
+
+h2 {
+    font-size: 20px;
+    color: #1c1e21;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+#output-prompt {
+    background-color: #f0f2f5;
+    cursor: not-allowed;
+}
