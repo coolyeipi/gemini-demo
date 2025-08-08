@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileUpload = document.getElementById('file-upload');
     const fileNameDisplay = document.getElementById('file-name');
 
+    // URL de tu backend. ¡IMPORTANTE! Cambia esto cuando despliegues tu backend. 
+    const BACKEND_URL = 'http://localhost:3000'; 
+
     optimizeButton.addEventListener('click', () => {
         const originalPrompt = inputPrompt.value;
         if (originalPrompt.trim() === '') {
@@ -13,8 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const optimizedPrompt = optimizarPrompt(originalPrompt);
-        outputPrompt.value = optimizedPrompt;
+        // Si hay un archivo seleccionado, la optimización se hará vía backend
+        if (fileUpload.files.length > 0) {
+            handleFileUpload(fileUpload.files[0]);
+        } else {
+            // Si no hay archivo, usa la lógica de optimización del frontend
+            const optimizedPrompt = optimizarPromptFrontend(originalPrompt);
+            outputPrompt.value = optimizedPrompt;
+        }
     });
 
     copyButton.addEventListener('click', () => {
@@ -34,34 +43,44 @@ document.addEventListener('DOMContentLoaded', () => {
         const file = event.target.files[0];
         if (file) {
             fileNameDisplay.textContent = file.name;
-            const fileExtension = file.name.split('.').pop().toLowerCase();
-
-            if (fileExtension === 'txt') {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    inputPrompt.value = e.target.result;
-                };
-                reader.onerror = (e) => {
-                    console.error('Error al leer el archivo TXT: ', e);
-                    alert('Error al leer el archivo TXT. Inténtalo de nuevo.');
-                };
-                reader.readAsText(file);
-            } else if (['pdf', 'docx'].includes(fileExtension)) {
-                // Para PDF/DOCX, generamos un prompt genérico ya que no podemos leer su contenido directamente en el navegador
-                inputPrompt.value = `Genera un resumen detallado y los puntos clave del documento llamado "${file.name}".`;
-                alert(`Se ha generado un prompt para el archivo ${file.name}. Ten en cuenta que el contenido del archivo no se ha leído directamente.`);
-            } else {
-                alert('Tipo de archivo no soportado. Por favor, sube un archivo .txt, .pdf o .docx.');
-                inputPrompt.value = '';
-                fileNameDisplay.textContent = 'Ningún archivo seleccionado';
-            }
+            // Cuando se selecciona un archivo, automáticamente lo enviamos al backend
+            handleFileUpload(file);
         } else {
             fileNameDisplay.textContent = 'Ningún archivo seleccionado';
             inputPrompt.value = '';
         }
     });
 
-    function optimizarPrompt(prompt) {
+    async function handleFileUpload(file) {
+        const formData = new FormData();
+        formData.append('document', file);
+
+        outputPrompt.value = 'Cargando y optimizando prompt con IA... Por favor, espera...';
+        inputPrompt.value = ''; // Limpiar el input principal
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/upload`, {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Error del servidor: ${response.status} - ${errorText}`);
+            }
+
+            const data = await response.json();
+            outputPrompt.value = data.optimizedPrompt;
+
+        } catch (error) {
+            console.error('Error al subir el archivo o comunicarse con el backend:', error);
+            outputPrompt.value = `Error al procesar el archivo: ${error.message}. Asegúrate de que el backend esté funcionando y la API Key de Gemini esté configurada.`;
+            alert(`Error: ${error.message}`);
+        }
+    }
+
+    // Esta función ahora solo se usa para prompts escritos directamente en el frontend
+    function optimizarPromptFrontend(prompt) {
         let rol = "Eres un asistente experto.";
         let instruccionesAdicionales = [
             "Proporciona una respuesta clara y concisa.",
